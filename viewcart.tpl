@@ -93,6 +93,23 @@
                                         <div class="row">
                                             <div class="{if $showqtyoptions}col-sm-5{else}col-sm-7{/if}">
                                                 <span class="item-title">
+<!--START of Product Image-->                                              
+                                                    <div style="float: left; padding-right:5px;">
+<div class="productimage-wrapper" style="margin: 0; border: 5px solid #fff; width:85px; height:85px;"> <!--Note: Wrapper width/height should equal double the border width/height plus the image width/height.-->
+{if $productimageid["product"][$product.productinfo.pid]|@count < 2}
+<img id="{$productimageid["product"][$product.productinfo.pid][0]}" src="modules/addons/productimage/product_images/{$productimageid["product"][$product.productinfo.pid][0]}.png" style="width: 75px; height: 75px;" onclick="productImageOpenModal(this.id);" onerror="productImageError(this);">
+{else}
+<div class="jcarousel-auto">
+<ul>
+{foreach $productimageid["product"][$product.productinfo.pid] as $image}
+<li><img id="{$image}" src="modules/addons/productimage/product_images/{$image}.png" style="width: 75px; height: 75px;" onclick="productImageOpenModal(this.id);" onerror="productImageError(this);"></li>
+{/foreach}
+</ul>
+</div>
+{/if}
+</div>
+</div>
+<!--END of Product Image-->
                                                     {$product.productinfo.name}
                                                     <a href="{$smarty.server.PHP_SELF}?a=confproduct&i={$num}" class="btn btn-link btn-xs">
                                                         <i class="fas fa-pencil-alt"></i>
