@@ -51,6 +51,21 @@
                                     </header>
                                     <div class="product-desc">
                                         <p>{$addon.description}</p>
+    <!--START Product Image-->                                        
+                                        <div class="productimage-wrapper" style="margin: 0; border: 5px solid #fff; width:85px;"> <!--Note: Wrapper width should equal double the border width plus the image width.-->
+{if $productimageid["addon"][$addon.id]|@count < 2}
+<img id="{$productimageid["addon"][$addon.id][0]}" src="modules/addons/productimage/product_images/{$productimageid["addon"][$addon.id][0]}.png" style="width: 75px; height: 75px;" onclick="productImageOpenModal(this.id);" onerror="productImageError(this);">
+{else}
+<div class="jcarousel-auto">
+<ul>
+{foreach $productimageid["addon"][$addon.id] as $image}
+<li><img id="{$image}" src="modules/addons/productimage/product_images/{$image}.png" style="width: 75px; height: 75px;" onclick="productImageOpenModal(this.id);" onerror="productImageError(this);"></li>
+{/foreach}
+</ul>
+</div>
+{/if}
+</div>
+ <!--END Product Image-->                                                                   
                                         <div class="form-group">
                                             <select name="productid" id="inputProductId{$num}" class="field">
                                                 {foreach $addon.productids as $product}
