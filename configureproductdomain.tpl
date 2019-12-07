@@ -116,6 +116,38 @@
                             </div>
                         </div>
                     {/if}
+    <!--START Existing Domain -->   					
+                    {if $existingdomains}
+                        <div class="option">
+                            <label>
+                                <input type="radio" name="domainoption" value="existing_domain" id="selexisting_domain"{if $domainoption eq "existing_domain"} checked{/if} />Use a domain I have already purchased
+                            </label>
+                            <div class="domain-input-group clearfix" id="domainexisting_domain">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <div class="row domains-row">
+                                            <div class="col-xs-2 text-right">
+                                                <p class="form-control-static">www.</p>
+                                            </div>
+                                            <div class="col-xs-7">
+                                              <select id="existing_domainsld" name="existing_domaindomain" class="form-control">
+                                                  {foreach key=num item=existingdomain from=$existingdomains}
+                                                      <option value="{$existingdomain}">{$existingdomain}</option>
+                                                  {/foreach}
+                                              </select>                                           
+										    </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="submit" id="b_existing_domain" class="btn btn-primary btn-block">
+                                            {$LANG.orderForm.use}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+<!--END Existing Domain -->          
                     {if $owndomainenabled}
                         <div class="option">
                             <label>
