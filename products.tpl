@@ -53,6 +53,37 @@
                                     {/if}
                                 </header>
                                 <div class="product-desc">
+    <!--START Product Image-->         
+                                    {if $product.bid}
+<div class="productimage-wrapper" style="margin: 0; border: 5px solid #fff; width:85px; height:85px;"> <!--Note: Wrapper width/height should equal double the border width/height plus the image width/height.-->
+{if $productimageid["bundle"][$product.bid]|@count < 2}
+<img id="{$productimageid["bundle"][$product.bid][0]}" src="modules/addons/productimage/product_images/{$productimageid["bundle"][$product.bid][0]}.png" style="width: 75px; height: 75px;" onclick="productImageOpenModal(this.id);" onerror="productImageError(this);">
+{else}
+<div class="jcarousel-auto">
+<ul>
+{foreach $productimageid["bundle"][$product.bid] as $image}
+<li><img id="{$image}" src="modules/addons/productimage/product_images/{$image}.png" style="width: 75px; height: 75px;" onclick="productImageOpenModal(this.id);" onerror="productImageError(this);"></li>
+{/foreach}
+</ul>
+</div>
+{/if}
+</div><br>
+{else}
+<div class="productimage-wrapper" style="margin: 0; border: 5px solid #fff; width:85px; height:85px;"> <!--Note: Wrapper width/height should equal double the border width/height plus the image width/height.-->
+{if $productimageid["product"][$product.pid]|@count < 2}
+<img id="{$productimageid["product"][$product.pid][0]}" src="modules/addons/productimage/product_images/{$productimageid["product"][$product.pid][0]}.png" style="width: 75px; height: 75px;" onclick="productImageOpenModal(this.id);" onerror="productImageError(this);">
+{else}
+<div class="jcarousel-auto">
+<ul>
+{foreach $productimageid["product"][$product.pid] as $image}
+<li><img id="{$image}" src="modules/addons/productimage/product_images/{$image}.png" style="width: 75px; height: 75px;" onclick="productImageOpenModal(this.id);" onerror="productImageError(this);"></li>
+{/foreach}
+</ul>
+</div>
+{/if}
+</div><br>
+{/if}
+<!--END Product Image-->                            
                                     {if $product.featuresdesc}
                                         <p id="product{$product@iteration}-description">
                                             {$product.featuresdesc}
